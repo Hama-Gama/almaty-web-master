@@ -39,7 +39,7 @@ export default function FAQ() {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
-			className='bg-white text-gray-900 py-20 px-6 md:px-24'
+			className='bg-white text-gray-900 py-10 px-6 md:px-24'
 		>
 			<h2 className='text-3xl md:text-4xl font-bold text-center mb-10'>
 				FAQ

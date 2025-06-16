@@ -5,7 +5,7 @@ import { FaWhatsapp, FaTelegramPlane, FaInstagram } from 'react-icons/fa'
 export default function ContactSection() {
 	return (
 		<section
-			className='bg-white py-20 px-6 md:px-24 text-gray-800'
+			className='bg-white py-10 px-6 md:px-24 text-gray-800'
 			id='contact'
 		>
 			<motion.h2

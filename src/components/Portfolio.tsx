@@ -16,8 +16,8 @@ export default function PortfolioSection() {
 	const isInView = useInView(ref, { once: true })
 
 	return (
-		<section className='py-20 px-6 md:px-24 bg-white text-black' ref={ref}>
-			<div className='text-center mb-12'>
+		<section className='py-10 px-6 md:px-24 bg-white text-black' ref={ref}>
+			<div className='text-center mb-6'>
 				<h2 className='text-3xl md:text-4xl font-bold mb-4'>Наши работы</h2>
 				<p className='text-gray-500'>
 					Мы гордимся каждым проектом, который мы реализуем. Вот некоторые из
@@ -25,7 +25,7 @@ export default function PortfolioSection() {
 				</p>
 			</div>
 
-			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6'>
+			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
 				{works.map((work, index) => (
 					<motion.div
 						key={index}
@@ -41,7 +41,7 @@ export default function PortfolioSection() {
 						<img
 							src={work.image}
 							alt={work.title}
-							className='w-full h-64 object-cover'
+							className='w-full h-full object-cover'
 						/>
 						<div className='p-4'>
 							<h3 className='text-xl font-semibold'>{work.title}</h3>
