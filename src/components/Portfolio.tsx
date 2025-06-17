@@ -1,6 +1,4 @@
-// components/PortfolioSection.tsx
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 const works = [
@@ -11,44 +9,62 @@ const works = [
 	{ title: 'Блог', image: '/portfolio/5.jpg' },
 ]
 
-export default function PortfolioSection() {
+export default function Portfolio() {
 	const ref = useRef(null)
 	const isInView = useInView(ref, { once: true })
 
 	return (
-		<section className='py-10 px-6 md:px-24 bg-white text-black' ref={ref}>
-			<div className='text-center mb-6'>
+		<motion.section
+			id='portfolio'
+			ref={ref}
+			initial={{ opacity: 0, y: 50 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			viewport={{ once: true }}
+			transition={{ duration: 0.6, ease: 'easeOut' }}
+			className='py-14 px-6 md:px-24 bg-white text-black'
+		>
+			<motion.div
+				initial={{ opacity: 0, y: 20 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				transition={{ duration: 0.6 }}
+				className='text-center mb-12'
+			>
 				<h2 className='text-3xl md:text-4xl font-bold mb-4'>Наши работы</h2>
-				<p className='text-gray-500'>
-					Мы гордимся каждым проектом, который мы реализуем. Вот некоторые из
-					них:
+				<p className='text-gray-500 max-w-xl mx-auto'>
+					Мы гордимся каждым проектом, который реализуем. Вот некоторые из них:
 				</p>
-			</div>
+			</motion.div>
 
-			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
 				{works.map((work, index) => (
 					<motion.div
 						key={index}
-						initial={{ opacity: 0, y: 40 }}
-						animate={isInView ? { opacity: 1, y: 0 } : {}}
+						initial={{ opacity: 0, scale: 0.95 }}
+						whileInView={{ opacity: 1, scale: 1 }}
+						viewport={{ once: true }}
 						transition={{
-							duration: 0.6,
+							duration: 0.5,
 							ease: 'easeOut',
-							delay: index * 0.1,
+							delay: index * 0.15,
 						}}
-						className='rounded-xl overflow-hidden shadow-lg group cursor-pointer hover:scale-105 transition'
+						className='rounded-xl overflow-hidden shadow-lg group cursor-pointer hover:scale-[1.03] transition-transform duration-300'
 					>
-						<img
-							src={work.image}
-							alt={work.title}
-							className='w-full h-full object-cover'
-						/>
-						<div className='p-4'>
-							<h3 className='text-xl font-semibold'>{work.title}</h3>
+						<div className='relative overflow-hidden'>
+							<img
+								src={work.image}
+								alt={work.title}
+								className='w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500'
+							/>
+							<div className='absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
+								<span className='text-white text-lg font-medium'>
+									{work.title}
+								</span>
+							</div>
 						</div>
 					</motion.div>
 				))}
 			</div>
-		</section>
+		</motion.section>
 	)
 }

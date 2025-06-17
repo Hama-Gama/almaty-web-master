@@ -1,124 +1,98 @@
-// src/components/Header.tsx
-import { Button } from '@/components/ui/button'
-import { Menu } from 'lucide-react'
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom' // если используешь react-router
-import { motion, AnimatePresence } from 'framer-motion'
-import LanguageSwitcher from '@/components/LanguageSwitcher'
-import HamburgerMenu from './HamburgerMenu'
+import { Sling as Hamburger } from 'hamburger-react'
+import { useState } from 'react'
+
 
 
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [showHeader, setShowHeader] = useState(true)
-	const [lastScrollY, setLastScrollY] = useState(0)
-	const [language, setLanguage] = useState('ru') // ru / en
-
-	// Скролл поведение
-	useEffect(() => {
-		const handleScroll = () => {
-			const currentScroll = window.scrollY
-			setShowHeader(currentScroll < lastScrollY || currentScroll < 100)
-			setLastScrollY(currentScroll)
-		}
-		window.addEventListener('scroll', handleScroll)
-		return () => window.removeEventListener('scroll', handleScroll)
-	}, [lastScrollY])
-
-	const handleLanguageToggle = () => {
-		setLanguage(prev => (prev === 'ru' ? 'en' : 'ru'))
-	}
-
-	const flagEmoji = language === 'ru' ? '🇷🇺' : '🇺🇸'
-
+  
 	return (
-		<AnimatePresence>
-			{showHeader && (
-				<motion.header
-					key='header'
-					initial={{ y: -80, opacity: 0 }}
-					animate={{ y: 0, opacity: 1 }}
-					exit={{ y: -80, opacity: 0 }}
-					transition={{ duration: 0.4, ease: 'easeOut' }}
-					className='flex items-center justify-between px-6 py-4 bg-transparent shadow-md sticky top-0 z-50'
-				>
-					<Link to='/' className='text-xl font-bold text-gray-800'>
-						AWM
-					</Link>
+		<header className='fixed top-0 left-0 w-full z-50 bg-white text-[#5d5d5e] p-4 shadow-md'>
+			<div className='container mx-auto md:p-2 flex md:flex-row items-center justify-between'>
+				<div>
+					<h1 className='text-2xl font-bold'>AWM</h1>
+				</div>
 
-					<nav className='hidden md:flex gap-6'>
-						<Link to='/' className='hover:text-blue-600 transition'>
-							Главная
-						</Link>
-						<Link to='/about' className='hover:text-blue-600 transition'>
-							О нас
-						</Link>
-						<Link to='/services' className='hover:text-blue-600 transition'>
-							Услуги
-						</Link>
-						<Link to='/contact' className='hover:text-blue-600 transition'>
-							Контакты
-						</Link>
-					</nav>
+				{/* Mobile navigation */}
+				<div className='md:hidden'>
+					<Hamburger toggled={isOpen} toggle={setIsOpen} direction='right' />
+				</div>
 
-					<div className='flex items-center gap-2 md:gap-4'>
-						{/* <Button variant='ghost' onClick={handleLanguageToggle}>
-							{flagEmoji}
-						</Button> */}
-						<LanguageSwitcher />
-						<div className='md:hidden'>
-							<Button
-								variant='ghost'
-								size='icon'
-								onClick={() => setIsOpen(!isOpen)}
-							>
-								<div className='md:hidden'>
-									<HamburgerMenu />
-								</div>
-							</Button>
-						</div>
-					</div>
+				{/* Desktop navigation */}
+				<nav className='hidden md:flex gap-4'>
+					<a href='#home' className='hover:underline'>
+						Главная
+					</a>
+					<a href='#about' className='hover:underline'>
+						О нас
+					</a>
+					<a href='#portfolio' className='hover:underline'>
+						Наши работы
+					</a>
+					<a href='#faq' className='hover:underline'>
+						FAQ
+					</a>
+					<a href='#testimonials' className='hover:underline'>
+						Отзывы
+					</a>
+					<a href='#contact' className='hover:underline'>
+						Контакты
+					</a>
+				</nav>
+			</div>
 
-					{/* Мобильное меню */}
-					<AnimatePresence>
-						{isOpen && (
-							<motion.div
-								initial={{ opacity: 0, y: -10 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -10 }}
-								transition={{ duration: 0.25 }}
-								className='absolute top-16 left-0 w-full bg-transparent flex flex-col items-start px-6 py-4 shadow-md md:hidden z-40'
-							>
-								<Link to='/' className='py-2' onClick={() => setIsOpen(false)}>
-									Главная
-								</Link>
-								<Link
-									to='/about'
-									className='py-2'
-									onClick={() => setIsOpen(false)}
-								>
-									О нас
-								</Link>
-								<Link
-									to='/services'
-									className='py-2'
-									onClick={() => setIsOpen(false)}
-								>
-									Услуги
-								</Link>
-								<Link
-									to='/contact'
-									className='py-2'
-									onClick={() => setIsOpen(false)}
-								>
-									Контакты
-								</Link>
-							</motion.div>
-						)}
-					</AnimatePresence>
-				</motion.header>
-			)}
-		</AnimatePresence>
+			{/* Mobile Navigation */}
+			<div
+				className={`md:hidden px-4 overflow-hidden transition-all duration-300 ease-in-out ${
+					isOpen ? 'max-h-60 py-4 opacity-100' : 'max-h-0 py-0 opacity-0'
+				}`}
+			>
+				<div className='text-xl flex flex-col gap-2'>
+					<a
+						href='#home'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						Главная
+					</a>
+					<a
+						href='#about'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						О нас
+					</a>
+					<a
+						href='#portfolio'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						Наши работы
+					</a>
+					<a
+						href='#faq'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						FAQ
+					</a>
+					<a
+						href='#testimonials'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						Отзывы
+					</a>
+					<a
+						href='#contact'
+						onClick={() => setIsOpen(false)}
+						className='hover:underline'
+					>
+						Контакты
+					</a>
+				</div>
+			</div>
+		</header>
 	)
 }
 

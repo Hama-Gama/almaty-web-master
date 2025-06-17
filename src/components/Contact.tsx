@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin } from 'lucide-react'
 import { FaWhatsapp, FaTelegramPlane, FaInstagram } from 'react-icons/fa'
+import InputMask from 'react-input-mask'
 
 export default function ContactSection() {
 	return (
@@ -94,18 +95,19 @@ export default function ContactSection() {
 				>
 					<input
 						type='text'
-						placeholder='Ваше имя'
+						placeholder='Имя'
 						className='w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
 						required
 					/>
 					<input
-						type='email'
-						placeholder='Ваш email'
+						type='tel'
+						placeholder='+7 (999) 999-99-99'
 						className='w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
 						required
 					/>
+		
 					<textarea
-						placeholder='Ваше сообщение'
+						placeholder='Cообщение'
 						rows={5}
 						className='w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400'
 						required
@@ -114,7 +116,7 @@ export default function ContactSection() {
 						type='submit'
 						className='bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition'
 					>
-						Отправить 
+						Отправить
 					</button>
 				</motion.form>
 			</div>

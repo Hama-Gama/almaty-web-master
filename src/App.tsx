@@ -1,29 +1,40 @@
 import Header from '@/components/Header'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Home from './pages/Home'
 import About from './components/About'
-import Services from './components/Services'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import Portfolio from './components/Portfolio'
+import Faq from './components/Faq'
+import Hero from './components/Hero'
 
 function App() {
 	return (
-		<div className='flex flex-col min-h-screen bg-gray-100'>
-			<Router>
-				<Header />
-				<main className='flex-1'>
-					<Routes>
-						<Route path='/' element={<Home>Главная страница</Home>} />
-						<Route path='/about' element={<About>О нас</About>} />
-						<Route path='/services' element={<Services>Услуги</Services>} />
-						<Route path='/contact' element={<Testimonials>Контакты</Testimonials>} />
-						<Route path='/contact' element={<Contact>Контакты</Contact>} />
-						<Route path='/contact' element={<Footer>Контакты</Footer>} />
-					</Routes>
-				</main>
-				<Footer />
-			</Router>
+		<div className='flex flex-col min-h-screen bg-gray-100 scroll-smooth'>
+			<Header />
+
+			<main className='flex-1'>
+				<section id='home'>
+					<Hero />
+				</section>
+
+				<section id='about'>
+					<About />
+				</section>
+				<section id='portfolio'>
+					<Portfolio />
+				</section>
+				<section id='faq'>
+					<Faq />
+				</section>
+				<section id='testimonials'>
+					<Testimonials />
+				</section>
+				<section id='contact'>
+					<Contact />
+				</section>
+			</main>
+
+			<Footer />
 		</div>
 	)
 }

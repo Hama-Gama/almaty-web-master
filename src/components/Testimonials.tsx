@@ -1,10 +1,8 @@
 // src/sections/Testimonials.tsx
-
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination, Autoplay, EffectFlip } from 'swiper/modules'
 import { motion } from 'framer-motion'
 import 'swiper/css'
-import 'swiper/css/pagination'
 import 'swiper/css/effect-flip' // 👈 обязательно для flip
 
 const testimonials = [
@@ -12,31 +10,31 @@ const testimonials = [
 		name: 'Айгуль Т.',
 		role: 'Предприниматель',
 		text: 'Спасибо за качественный сайт! Всё сделали быстро и профессионально.',
-		avatar: '/public/review/1.png',
+		avatar: '/review/1.png',
 	},
 	{
 		name: 'Марат К.',
 		role: 'Владелец студии массажа',
 		text: 'Команда учла все пожелания. Получился стильный и понятный сайт.',
-		avatar: '/public/review/1.png',
+		avatar: '/review/2.png',
 	},
 	{
 		name: 'Анна Р.',
 		role: 'Косметолог',
 		text: 'Работаем уже не первый раз — всегда всё на высшем уровне.',
-		avatar: '/public/review/1.png',
+		avatar: '/review/3.png',
 	},
 	{
 		name: 'Марат К.',
 		role: 'Владелец студии массажа',
 		text: 'Команда учла все пожелания. Получился стильный и понятный сайт.',
-		avatar: '/public/review/1.png',
+		avatar: '/review/4.png',
 	},
 ]
 
 export default function ReviewsFlip() {
 	return (
-		<section className='bg-gray-100 py-8 px-6 md:px-24 text-gray-900'>
+		<section id='testimonials' className='bg-gray-100 py-8 px-6 md:px-24 text-gray-900'>
 			<motion.h2
 				initial={{ opacity: 0, y: 40 }}
 				whileInView={{ opacity: 1, y: 0 }}
@@ -48,7 +46,7 @@ export default function ReviewsFlip() {
 			</motion.h2>
 
 			<Swiper
-				modules={[Pagination, Autoplay, EffectFlip]} // 👈 добавлен EffectFlip
+				modules={[ Autoplay, EffectFlip]} // 👈 добавлен EffectFlip
 				effect='flip' // 👈 указываем эффект
 				pagination={{ clickable: true }}
 				autoplay={{ 

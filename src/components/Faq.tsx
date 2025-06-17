@@ -1,4 +1,3 @@
-// src/sections/FAQ.tsx
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
@@ -24,9 +23,24 @@ const faqs = [
 		answer:
 			'Да, вы сможете управлять контентом через админку или CMS. Мы предоставим инструкцию.',
 	},
+	{
+		question: 'Какие технологии вы используете?',
+		answer:
+			'Мы используем React, TailwindCSS, Framer Motion и другие современные инструменты.',
+	},
+	{
+		question: 'Сколько времени занимает разработка сайта?',
+		answer:
+			'В среднем от 3 до 10 рабочих дней, в зависимости от сложности и объёма.',
+	},
+	{
+		question: 'Предоставляете ли вы поддержку после запуска?',
+		answer:
+			'Да, мы предлагаем сопровождение, поддержку и обновления для вашего сайта.',
+	},
 ]
 
-export default function FAQ() {
+export default function Faq() {
 	const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
 	const toggle = (index: number) => {
@@ -39,11 +53,10 @@ export default function FAQ() {
 			whileInView={{ opacity: 1, y: 0 }}
 			viewport={{ once: true }}
 			transition={{ duration: 0.6, ease: 'easeOut' }}
-			className='bg-white text-gray-900 py-10 px-6 md:px-24'
+			className='bg-gray-50 text-gray-900 py-10 px-6 md:px-24'
+			id='faq'
 		>
-			<h2 className='text-3xl md:text-4xl font-bold text-center mb-10'>
-				FAQ
-			</h2>
+			<h2 className='text-3xl md:text-4xl font-bold text-center mb-10'>FAQ</h2>
 
 			<div className='max-w-3xl mx-auto space-y-4'>
 				{faqs.map((faq, index) => (
@@ -70,20 +83,15 @@ export default function FAQ() {
 						<AnimatePresence initial={false}>
 							{activeIndex === index && (
 								<motion.div
-									initial={{ height: 0, opacity: 0 }}
-									animate={{ height: 'auto', opacity: 1 }}
-									exit={{ height: 0, opacity: 0 }}
-									transition={{ duration: 0.35, ease: 'easeInOut' }}
+									key='content'
+									layout
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
+									transition={{ duration: 0.3 }}
 									className='px-4 pb-4 text-gray-600'
 								>
-									<motion.p
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										transition={{ duration: 0.3, delay: 0.1 }}
-									>
-										{faq.answer}
-									</motion.p>
+									<p>{faq.answer}</p>
 								</motion.div>
 							)}
 						</AnimatePresence>
